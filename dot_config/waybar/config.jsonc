@@ -7,7 +7,7 @@
     "gtk-layer-shell": true,
     "height": 50,
     "modules-left": [
-        // "clock",
+        //  "clock",
         // "custom/weather",
         "wlr/workspaces"
     ],
@@ -17,33 +17,45 @@
     "modules-right": [
         "network",
         "temperature",
+        "cpu",
         "memory",
         // "custom/power_profile",
         // "backlight",
         "pulseaudio",
-        "pulseaudio#microphone",
+        //"pulseaudio#microphone",
         "tray"
     ],
     "hyprland/window": {
         "format": "{}"
+    },
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}: {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
     },
     "wlr/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "on-click": "activate",
         "format": "{icon}",
-        "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": [],
-            "9": [],
-            "10": []
-        },
+        // "format-icons": {
+        //   "1": "🌐",
+        //   // "2": "",
+        //   "10": "",
+        //   "urgent": "",
+        //   "active": "",
+        //   "default": ""
+        // },
         "sort-by-number": true
     },
     "custom/power_profile": {
@@ -67,12 +79,11 @@
         "spacing": 10
     },
     "cpu": {
-        "format": "🛸  {usage}",
-        "tooltip": true,
-        "on-click": "kitty -t btop -e btop --utf-force"
+        "format": "{usage}% ",
+        "tooltip": false
     },
     "memory": {
-        "format": "{}  🏔️"
+        "format": "{}% "
     },
     "clock": {
         "format": "{: %I:%M %p   %a, %b %e}",
