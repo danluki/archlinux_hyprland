@@ -1,0 +1,38 @@
+source ~/.config/antigen.zsh
+
+antigen use oh-my-zsh
+
+antigen bundle git
+antigen bundle command-not-found
+antigen bundle docker
+antigen bundle nvm
+antigen bundle docker-compose
+antigen bundle zsh-history-substring-search
+antigen bundle zsh-npm-scripts-autocomplete
+#antigen bundle deno
+antigen bundle go
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen bundle zsh-users/zsh-autosuggestions
+
+antigen apply
+eval "$(starship init zsh)"
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH:/usr/local/go/bin:$GOPATH/bin
+#eval $(ssh-agent) > /dev/null
+
+export SHELL=/bin/zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export EDITOR="micro"
+
+# pnpm
+export PNPM_HOME="/home/danluki/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+
+___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
