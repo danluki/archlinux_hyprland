@@ -1,24 +1,28 @@
 {
     "layer": "top",
     "position": "top",
+    "output": "HDMI-A-1",
     // "mod": "dock",
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "height": 50,
+    "height": 40,
     "modules-left": [
-        //  "clock",
+        "wlr/workspaces",
+        "clock",
+        "hyprland/language"
         // "custom/weather",
-        "wlr/workspaces"
     ],
     "modules-center": [
         "hyprland/window"
     ],
     "modules-right": [
+        // "keyboard-state",
         "network",
         "temperature",
         "cpu",
         "memory",
+        "disk",
         // "custom/power_profile",
         // "backlight",
         "pulseaudio",
@@ -27,6 +31,15 @@
     ],
     "hyprland/window": {
         "format": "{}"
+    },
+    "keyboard-state": {
+        "numlock": false,
+        "capslock": false,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
     },
     "sway/workspaces": {
         "disable-scroll": true,
@@ -42,21 +55,6 @@
             "focused": "",
             "default": ""
         }
-    },
-    "wlr/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "on-click": "activate",
-        "format": "{icon}",
-        // "format-icons": {
-        //   "1": "🌐",
-        //   // "2": "",
-        //   "10": "",
-        //   "urgent": "",
-        //   "active": "",
-        //   "default": ""
-        // },
-        "sort-by-number": true
     },
     "custom/power_profile": {
         //shows the current power profile and switches to next on click
@@ -78,17 +76,6 @@
         "icon-size": 18,
         "spacing": 10
     },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "clock": {
-        "format": "{: %I:%M %p   %a, %b %e}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
     "backlight": {
         "device": "intel_backlight",
         "format": "{icon} {percent}%",
@@ -100,27 +87,6 @@
         "on-scroll-up": "brightnessctl set 1%+",
         "on-scroll-down": "brightnessctl set 1%-",
         "min-length": 6
-    },
-    "pulseaudio": {
-        "format": "{icon}  {volume}",
-        "format-muted": "🔇 sssh..",
-        "on-click": "pavucontrol",
-        "scroll-step": 1,
-        "format-icons": {
-            "headphone": "🎐",
-            "hands-free": "🎐",
-            "headset": "🎐",
-            "phone": "📞",
-            "portable": "📞",
-            "car": "",
-            "default": [
-                "☁️",
-                "🌧️",
-                "🌨️",
-                "🌩️",
-                "⛈️"
-            ]
-        }
     },
     "pulseaudio#microphone": {
         "format": "{format_source}",
@@ -134,17 +100,107 @@
     "temperature": {
         "thermal-zone": 1,
         "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input",
-        "format": "{temperatureC}°C ",
+        "format": " {temperatureC}°C",
         "critical-threshold": 80,
         "format-critical": "{temperatureC}°C "
     },
+    "wlr/workspaces": {
+         "sort-by-number": true,
+         "format": "{icon}",
+         "on-click": "activate"
+    },
+    "custom/security": {
+        "exec": "waybar-security",
+        "return-type": "json",
+        "interval": "once"
+    },
+    "custom/progress": {
+        "exec": "waybar-progress",
+        "return-type": "json",
+        "interval": 1
+    },
+    "custom/usbguard": {
+        "format-icons": {
+            "icon": "<span foreground='#928374'> </span>"
+        },
+        "format": "{icon}{}",
+        "exec": "waybar-usbguard",
+        "return-type": "json",
+        "on-click": "waybar-usbguard allow",
+        "on-click-right": "waybar-usbguard reject"
+    },
+    "custom/systemd": {
+        "exec": "waybar-systemd",
+        "return-type": "json",
+        "interval": 10
+    },
+    "custom/updates": {
+        "format-icons": {
+            "icon": "<span foreground='#928374'> </span>"
+        },
+        "format": "{icon}{}",
+        "exec": "waybar-updates show",
+        "return-type": "json",
+        "signal": 1,
+        "on-click-right": "waybar-updates refresh",
+        "interval": "once"
+    },
+    "custom/vpn": {
+        "exec": "waybar-vpn",
+        "return-type": "json"
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "<span foreground='#928374'></span> {:%a, %d %b  <span foreground='#928374'> </span> %H:%M}"
+    },
+    "cpu": {
+        "format": "<span foreground='#928374'></span>  {usage}%",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+    "disk": {
+        "format": "<span foreground='#928374'></span>  {percentage_used}%",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+    "memory": {
+        "format": "<span foreground='#928374'></span> {}%",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+    "hyprland/language": {
+        // "format": "{flag}",
+        "min-length": 3
+    },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{essid} - {ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
+        "interval": 2,
+        "interface": "enp3s0",
+        "format-wifi": "<span foreground='#928374'></span> {essid}",
+        "format-ethernet": "<span foreground='#928374'></span>  {bandwidthDownBits}  {bandwidthUpBits}",
+        "format-linked": "<span foreground='#928374'></span> {ifname}",
+        "format-disconnected": " <span foreground='#928374'></span> ",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        "format": "<span foreground='#928374'>{icon}</span>  {volume}%",
+        "format-muted": "🔇 sssh..",
+        "scroll-step": 1,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "env LIBGL_ALWAYS_SOFTWARE=1 helvum"
     }
 }

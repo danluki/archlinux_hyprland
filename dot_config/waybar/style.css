@@ -6,7 +6,8 @@
 }
 
 window#waybar {
-  background: transparent;
+  background: rgba(170, 170, 170, 0.1);
+  border-radius: 0;
 }
 
 tooltip {
@@ -29,7 +30,7 @@ tooltip {
 #tray,
 #backlight,
 #window {
-  margin-top: 2px;
+  /* margin-top: 2px; */
   /* padding-top: 0px; */
 }
 
@@ -40,7 +41,7 @@ tooltip {
   /* background-color : rgba(170, 170, 170,0.1); */
   margin-left: 5px;
   border-radius: 80px;
-  border: 0.2px solid rgba(170, 170, 170, 0.5);
+  /* border: 0.2px solid rgba(170, 170, 170, 0.5); */
   /* font-weight: 600; */
 }
 #workspaces button {
@@ -72,22 +73,23 @@ tooltip {
   color: white;
   /* background-color : rgba(0, 0, 0,0.4); */
   /* box-shadow: rgba(17, 17, 27, 0.2) 0 0 3 2px; */
-  border-radius: 8px;
-  padding: 2px 8px 0px 8px;
+  /* border-radius: 8px; */
+  padding: 0 8px;
   /* border: 0.1px solid cyan; */
 }
 
 #tray {
-  background-color: rgba(170, 170, 170, 0.3);
+  /* background-color: rgba(170, 170, 170, 0.3); */
   margin-right: 10px;
   padding: 0 8px;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 #network {
   color: white;
-  border: 0.2px solid rgba(170, 170, 170, 0.6);
-  border-radius: 90px;
+  /* border: 0.2px solid rgba(170, 170, 170, 0.6); */
+  /* border-radius: 90px; */
+  /* border-left: none; */
   padding: 0 8px;
 }
 
@@ -102,21 +104,42 @@ tooltip {
   opacity: 1;
 }
 
+#temperature {
+  padding: 0 8px;
+  color: white;
+  /* border: 0.2px solid rgba(170, 170, 170, 0.6); */
+  /* border-radius: 80px 0 0 80px; */
+  /* border-right: none; */
+  opacity: 0.9;
+}
+
 #cpu {
   padding: 0 8px;
   color: white;
-  border: 0.2px solid rgba(170, 170, 170, 0.6);
+  /* border: 0.2px solid rgba(170, 170, 170, 0.6);
   border-radius: 80px 0 0 80px;
   border-right: none;
+  border-left: none; */
   opacity: 0.9;
 }
 
 #memory {
   padding: 0 8px;
   color: white;
-  border: 0.2px solid rgba(170, 170, 170, 0.6);
+  /* border: 0.2px solid rgba(170, 170, 170, 0.6);
+  border-radius: 80px 0 0 80px;
+  border-right: none;
+  border-left: none; */
+  opacity: 0.9;
+}
+
+#disk {
+  padding: 0 8px;
+  color: white;
+  /* border: 0.2px solid rgba(170, 170, 170, 0.6);
   border-radius: 0 80px 80px 0;
   border-left: none;
+  border-right: none; */
   opacity: 0.9;
 }
 
@@ -133,9 +156,9 @@ tooltip {
 #pulseaudio {
   padding: 0 8px;
   color: white;
-  border: 0.2px solid rgba(170, 170, 170, 0.6);
+  /* border: 0.2px solid rgba(170, 170, 170, 0.6);
   border-radius: 0 80px 80px 0;
-  border-left: none;
+  border-left: none; */
   opacity: 0.9;
 }
 
@@ -155,4 +178,14 @@ tooltip {
     /* 60deg, */ rgba(33, 234, 150, 0.5),
     transparent /* rgba(170, 170, 170,0.2) */
   );
+}
+
+#language {
+  padding: 0 8px;
+  color: white;
+  /* border: 0.2px solid rgba(170, 170, 170, 0.6);
+  border-radius: 80px 0 0 80px;
+  border-right: none;
+  border-left: none; */
+  opacity: 0.9;
 }
